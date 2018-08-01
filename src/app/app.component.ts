@@ -8,3 +8,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'form';
 }
+window.onload=function(){
+  localStorage.clear()
+};

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl} from '@angular/forms';
-import {Validators} from '@angular/forms'
+import { Validators } from '@angular/forms'
+import { RouterModule, Router } from '@angular/router'
+import { ReactiveformService } from './reactiveform.service';
 @Component({
   selector: 'app-front',
   templateUrl: './front.component.html',
@@ -21,10 +23,14 @@ rg: FormGroup
      this.check=true;
    }
   }
-  storedata(){
+  
+  onSubmit(){
     localStorage.setItem("data",JSON.stringify(this.rg.value));
+   this.route.navigate(['/showData'])
   }
-  constructor() {
+  constructor(private route:Router) {
+    
+  
     this.rg=new FormGroup({
       firstname: new FormControl('',[
         Validators.required,
@@ -68,11 +74,27 @@ rg: FormGroup
              
     });
    }
-
+formupdate:object
   ngOnInit() {
+    if(localStorage.getItem("data"))
+  {
+    var formupdate=JSON.parse(localStorage.getItem("data"))
+    this.rg.patchValue({
+      firstname:formupdate.firstname,
+      lastname:formupdate.lastname,
+      gender:formupdate.gender,
+      contactnum:formupdate.contactnum,
+      empid:formupdate.empid,
+      password:formupdate.password,
+      confirmpassword:formupdate.confirmpassword
+
+    })
+  }
+    
+    }
   }
 
-}
+
 
 
 

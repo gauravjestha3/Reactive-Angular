@@ -5,6 +5,7 @@ import { FrontComponent } from './front/front.component';
 import { BackComponent } from './back/back.component';
 
 
+
 const routes: Routes = [
   { 
     path: '', 

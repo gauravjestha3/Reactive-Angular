@@ -1,17 +1,19 @@
+
 <h3> Reactive Form Validation</h3>
+
   <form [formGroup]="rg" (ngSubmit)="onSubmit()">
 
       <label>First Name
       <input type="text"  class="form-control" formControlName="firstname"/>
       <span *ngIf="rg.controls['firstname'].hasError('required')">*</span> 
-      <span *ngIf="!rg.controls['firstname'].valid  &&  (rg.controls['firstname'].touch||rg.controls['firstname'].dirty)">only char</span> 
+      <span *ngIf="!rg.controls['firstname'].valid  &&  (rg.controls['firstname'].touch||rg.controls['firstname'].dirty)">Character Only</span> 
       
     </label><br/>
     
     <label>Last Name
       <input type="text" class="form-control" formControlName="lastname"/>
       <span *ngIf="rg.controls['lastname'].hasError('required')">*</span> 
-      <span *ngIf="!rg.controls['lastname'].valid  &&  (rg.controls['lastname'].touch||rg.controls['lastname'].dirty)">only char</span> 
+      <span *ngIf="!rg.controls['lastname'].valid  &&  (rg.controls['lastname'].touch||rg.controls['lastname'].dirty)">Character</span> 
     </label><br/>
     <label>Gender:
       <input type="text"  class="form-control" formControlName="gender"/>
@@ -39,7 +41,7 @@
       <span *ngIf="rg.controls['confirmpassword'].hasError('confirmpassword')">*</span> 
       <span *ngIf="!check  && !rg.controls['confirmpassword'].valid  &&  (rg.controls['confirmpassword'].touch||rg.controls['password'].dirty)">Please confirm Password</span> 
     </label><br/>
-    <a routerLink="/showData">
-    <button type="submit" class="btn btn-success" [disabled]="!rg.valid"(click)="storedata()">Submit</button>
-    </a>
+    
+    <button type="submit" class="btn btn-success" [disabled]="!rg.valid">Submit</button>
+    
     </form>
