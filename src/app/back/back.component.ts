@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '../../../node_modules/@angular/router';
+import { ReactiveService } from '../reactive.service';
 @Component({
   selector: 'app-back',
   templateUrl: './back.component.html',
@@ -7,8 +8,8 @@ import { Router } from '../../../node_modules/@angular/router';
 })
 export class BackComponent implements OnInit {
 item;
-  constructor(private route:Router) {
-    this.item=JSON.parse(localStorage.getItem("data"));
+  constructor(private route:Router,private user:ReactiveService) {
+   // this.item=JSON.parse(localStorage.getItem("data"));
    }
  
    backForm(){
@@ -18,6 +19,7 @@ item;
   
  
   ngOnInit() {
+    this.item=this.user.getData()
   }
 
 }

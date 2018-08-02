@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl} from '@angular/forms';
 import { Validators } from '@angular/forms'
 import { RouterModule, Router } from '@angular/router'
-import { ReactiveformService } from './reactiveform.service';
+import { ReactiveService } from '../reactive.service';
+
 @Component({
   selector: 'app-front',
   templateUrl: './front.component.html',
@@ -10,7 +11,8 @@ import { ReactiveformService } from './reactiveform.service';
 })
 export class FrontComponent implements OnInit {
 rg: FormGroup
- 
+showpassword ='password';
+showhidepassword ='password'; 
  check:boolean=false;
  checkpassword(){
    if(this.rg.value.password!=this.rg.value.confirmpassword)
@@ -25,10 +27,11 @@ rg: FormGroup
   }
   
   onSubmit(){
-    localStorage.setItem("data",JSON.stringify(this.rg.value));
+    //localStorage.setItem("data",JSON.stringify(this.rg.value));
+    this.user.check(this.rg.value)
    this.route.navigate(['/showData'])
   }
-  constructor(private route:Router) {
+  constructor(private route:Router,private user:ReactiveService) {
     
   
     this.rg=new FormGroup({
@@ -63,7 +66,7 @@ rg: FormGroup
             Validators.maxLength(16),
             Validators.pattern('((?=.*[0-9])(?=.*[a-z])(?=.*[$@$!%*?&()_+={};;"|,.<>]).{0,16})')]),
            
-           
+        
       
             
           confirmpassword:new FormControl('',[
@@ -71,14 +74,16 @@ rg: FormGroup
         
           Validators.maxLength(16),
           Validators.pattern('((?=.*[0-9])(?=.*[a-z])(?=.*[$@$!%*?&()_+={};;"|,.<>]).{0,16})')]),
+    
              
     });
    }
 formupdate:object
   ngOnInit() {
-    if(localStorage.getItem("data"))
+    
+    if(this.route.url==='/form')
   {
-    var formupdate=JSON.parse(localStorage.getItem("data"))
+    var formupdate=this.user.getData();
     this.rg.patchValue({
       firstname:formupdate.firstname,
       lastname:formupdate.lastname,
@@ -92,7 +97,27 @@ formupdate:object
   }
     
     }
+    show(){
+      if(this.showpassword==='password')
+      {
+        this.showpassword='text';
+      }
+      else{
+        this.showpassword='password'
+      }
+    }
+   
+showhide(){
+  if(this.showhidepassword==='password')
+  {
+    this.showhidepassword='text';
   }
+  else{
+    this.showhidepassword='password'
+  }
+}
+    }
+  
 
 
 

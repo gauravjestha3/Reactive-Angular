@@ -9,8 +9,7 @@ import { BackComponent } from './back/back.component';
 const routes: Routes = [
   { 
     path: '', 
-    redirectTo:'form', 
-    pathMatch: 'full' 
+    component:FrontComponent
   },
   { 
     path: 'showData', 

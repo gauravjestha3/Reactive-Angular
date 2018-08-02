@@ -32,12 +32,14 @@
       <span *ngIf="!rg.controls['empid'].valid  &&  (rg.controls['empid'].touch||rg.controls['empid'].dirty)">Only 4 Digits</span> 
     </label><br/>
     <label>Password:
-      <input type="text"  class="form-control" formControlName="password" maxlength="16"/>
+      <input type={{showpassword}}  class="form-control" formControlName="password" maxlength="16"/>
+      <span (click)="show()" class="glyphicon glyphicon-eye-open"></span>
       <span *ngIf="rg.controls['password'].hasError('required')">*</span> 
       <span *ngIf="!rg.controls['password'].valid  &&  (rg.controls['password'].touch||rg.controls['password'].dirty)">Only Valid Password</span> 
     </label><br/>
     <label>Confirm
-      <input type="text"  class="form-control" formControlName="confirmpassword"(keyup)="checkpassword()"/>
+      <input type={{showhidepassword}}  class="form-control" formControlName="confirmpassword"(keyup)="checkpassword()"/>
+      <span (click)="showhide()" class="glyphicon glyphicon-eye-open"></span>
       <span *ngIf="rg.controls['confirmpassword'].hasError('confirmpassword')">*</span> 
       <span *ngIf="!check  && !rg.controls['confirmpassword'].valid  &&  (rg.controls['confirmpassword'].touch||rg.controls['password'].dirty)">Please confirm Password</span> 
     </label><br/>
