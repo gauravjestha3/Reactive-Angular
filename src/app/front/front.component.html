@@ -2,8 +2,23 @@
 <h3> Reactive Form Validation</h3>
 
   <form [formGroup]="rg" (ngSubmit)="onSubmit()">
-
-      <label>First Name
+   <!-- <label for="Starting"></label>
+    <select formControlName="traveling">
+      <option value="Mr">Mr</option>
+      <option value="Mrs">Mrs</option>
+      <option value="Miss">Miss</option>
+      
+      </select>
+      <!-->
+   <!---
+    <label>Married???</label>
+      
+<label>
+  <input type="radio"*ngFor="let marriage of marriages" formControlName="marriage"[value]="marriage">&nbsp;{{marriage}}
+</label>
+      !-->
+    
+    <label>First Name
       <input type="text"  class="form-control" formControlName="firstname"/>
       <span *ngIf="rg.controls['firstname'].hasError('required')">*</span> 
       <span *ngIf="!rg.controls['firstname'].valid  &&  (rg.controls['firstname'].touch||rg.controls['firstname'].dirty)">Character Only</span> 

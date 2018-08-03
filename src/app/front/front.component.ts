@@ -4,12 +4,15 @@ import { Validators } from '@angular/forms'
 import { RouterModule, Router } from '@angular/router'
 import { ReactiveService } from '../reactive.service';
 
+
 @Component({
   selector: 'app-front',
   templateUrl: './front.component.html',
   styleUrls: ['./front.component.css']
 })
 export class FrontComponent implements OnInit {
+  traveling=['Mr.','Mrs.','Miss'];
+  marriages=['yes','no'];
 rg: FormGroup
 showpassword ='password';
 showhidepassword ='password'; 
@@ -31,10 +34,20 @@ showhidepassword ='password';
     this.user.check(this.rg.value)
    this.route.navigate(['/showData'])
   }
+  
   constructor(private route:Router,private user:ReactiveService) {
     
   
     this.rg=new FormGroup({
+food:new FormControl('',[
+  
+]),
+traveling:new FormControl('',[
+  Validators.required,
+]),
+marriage:new FormControl('',[
+Validators.required,
+]),
       firstname: new FormControl('',[
         Validators.required,
         Validators.pattern("[a-zA-Z ]+")]),  
